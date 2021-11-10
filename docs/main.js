@@ -1,5 +1,3 @@
-import { ARButton } from "./libs/ARButton";
-
 
 var pointLight,
     t,

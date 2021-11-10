@@ -1,3 +1,4 @@
+import { ARButton } from "./libs/ARButton";
 
 
 var pointLight,
@@ -560,6 +561,9 @@ function init() {
     // Create controls that allows a user to move the scene with a mouse.
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+    const button = ARButton.createButton(renderer);
+    console.log(button)
+    document.body.appendChild(button)
     // Load the images used in the background.
     var path = "cubemap/";
     var format = ".jpeg";

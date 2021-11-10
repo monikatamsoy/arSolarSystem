@@ -4,11 +4,13 @@
         <title>Planets and moons</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
         <div id="webgl"></div>
         <script src="js/dat.gui.min.js"></script>
-        <script src="js/three.js"></script>
+        <!-- <script src="js/three.js"></script> -->
+
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script> -->
         <script src="js/OrbitControls.js"></script>
         <script type = "module" >
@@ -528,12 +530,9 @@ function createAsteroids() {
 }
 
 function createRock(size, spreadX, maxWidth, maxHeight, maxDepth) {
-    var geometry = new THREE.DodecahedronGeometry(size, 1);
-    geometry.vertices.forEach(function (v) {
-        v.x += 0 - Math.random() * (size / 4);
-        v.y += 0 - Math.random() * (size / 4);
-        v.z += 0 - Math.random() * (size / 4);
-    });
+    var geometry = new THREE.DodecahedronBufferGeometry(size, 1);
+    var position = geometry.attributes.position;
+    const vector = new THREE.Vector3();
     var color = "#111111";
     color = ColorLuminance(color, 2 + Math.random() * 10);
     //   console.log(color);
@@ -543,8 +542,24 @@ function createRock(size, spreadX, maxWidth, maxHeight, maxDepth) {
         roughness: 0.8,
         metalness: 1,
     });
-    //   shininess: 0.5,
     let cube = new THREE.Mesh(geometry, texture);
+    for ( let i = 0, l = position.count; i < l; i ++ )
+    {
+      vector.fromBufferAttribute( position, i );
+      vector.applyMatrix4( cube.matrixWorld );
+      vector.x += 0 - Math.random() * (size / 4);
+        vector.y += 0 - Math.random() * (size / 4);
+        vector.z += 0 - Math.random() * (size / 4);
+   
+   }
+    // geometry.attributes.position.forEach(function (v) {
+    //     v.x += 0 - Math.random() * (size / 4);
+    //     v.y += 0 - Math.random() * (size / 4);
+    //     v.z += 0 - Math.random() * (size / 4);
+    // });
+    
+    //   shininess: 0.5,
+    // let cube = new THREE.Mesh(geometry, texture);
     cube.castShadow = true;
     cube.receiveShadow = true;
     cube.scale.set(

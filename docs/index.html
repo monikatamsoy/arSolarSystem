@@ -449,6 +449,7 @@ function update(renderer, scene, camera, controls) {
     }
             
     renderer.render(scene, camera);
+    // requestAnimationFrame(this.animate.bind(this));
     requestAnimationFrame(function () {
         update(renderer, scene, camera, controls);
     });
@@ -595,7 +596,7 @@ function init() {
     // Create the renderer that controls animation.
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.xr.enabled = true;
+    // renderer.xr.enabled = true;
 
     // Attach the renderer to the div element.
     document.getElementById("webgl").appendChild(renderer.domElement);

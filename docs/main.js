@@ -1,4 +1,4 @@
-import {ARButton} from 'https://unpkg.com/three@.126.0/examples/jsm/webxr/ARButton.js'
+
 
 var pointLight,
     t,

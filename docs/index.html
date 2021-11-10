@@ -599,7 +599,7 @@ function init() {
         1, // near clipping plane
         1000 // far clipping plane
     );
-    camera.position.z = 10;
+    camera.position.z = 50;
     camera.position.x = 0;
     camera.position.y = 10;
     
@@ -612,7 +612,7 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.enabled = true;
-    renderer.xr.setReferenceSpaceType( 'local' );
+    // renderer.xr.setReferenceSpaceType( 'local' );
 
     // Attach the renderer to the div element.
     document.getElementById("webgl").appendChild(renderer.domElement);

@@ -1,5 +1,5 @@
-# arSolarSystem
-Places a Solar System into the real world using webXR
+# SolarSystem scene
+Creates a Three.js scene of Solar System on your WebXR-compatible browser. 
 
 
 
